@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Landmarx Group Website
 
-## Getting Started
+Marketing site for Landmarx Group — an integrated real asset development platform based in Cairns, Australia.
 
-First, run the development server:
+**Live site:** https://landmarx-group-website.vercel.app
+
+## Stack
+
+- [Next.js](https://nextjs.org) (App Router, static pages) + TypeScript
+- Tailwind CSS v4 — design tokens live in `app/globals.css` (`@theme` block: ink/beech/gold palette)
+- Fonts via `next/font`: Space Grotesk (display), Instrument Serif (italic accents), Inter (body)
+
+## Editing
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # local preview at http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Each page is a file under `app/` (e.g. `app/about/page.tsx`). Shared pieces live in `components/` — `Navigation.tsx`, `Footer.tsx`, and the animation helpers `Reveal.tsx`, `Counter.tsx`, `Marquee.tsx`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A step-by-step guide for non-developers (GitHub access, editing with Claude Code, deploying) is on the hidden page `/help` of the live site.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploying
 
-## Learn More
+Pushes to `main` deploy automatically via the Vercel GitHub integration. Branch pushes get preview URLs.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+git add .
+git commit -m "Describe the change"
+git push
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The live site updates ~60–90 seconds after the push.
