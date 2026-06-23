@@ -10,6 +10,7 @@ import Counter from '@/components/Counter'
 /* ------------------------------------------------------------------ */
 
 const stats = [
+  { value: 19, suffix: '%', label: 'Capital Growth — Edmonton (Last 12 Months)', prefix: '' },
   { value: 5.2, suffix: '%', label: 'Gross Yield', prefix: '' },
   { value: 1500, suffix: '/wk', label: 'Combined Rent', prefix: '$' },
   { value: 78000, suffix: '/yr', label: 'Annual Income', prefix: '$' },
@@ -36,12 +37,12 @@ const unitSpecs = [
 ]
 
 const highlights = [
+  { title: '19% Capital Growth', desc: 'Edmonton recorded 19% capital growth in the last 12 months — one of the strongest performing suburbs in Far North Queensland. Buy now, before the market moves further.', gold: true },
   { title: 'DA Approved', desc: 'Planning approval is in place. Building is already underway, removing development risk.' },
   { title: 'Fixed Price', desc: '$1,500,000 total fixed price. No surprises on construction cost.' },
   { title: 'Rent Guarantee', desc: '12-month developer-funded guarantee at $750/week per unit from settlement.' },
   { title: 'No Body Corporate', desc: 'Subject to final legal title — no ongoing body corporate fees reducing your net return.' },
   { title: 'Dual Income', desc: 'Two fully independent dwellings on one 600m² lot — two rent cheques, one purchase.' },
-  { title: '4 Months to Handover', desc: 'Building underway. Approximately 4 months to completion and income start.' },
 ]
 
 const gallery = [
@@ -108,11 +109,21 @@ export default function CairnsDual() {
               </span>
             </h1>
 
+            <div className="fade-up mb-6" style={{ animationDelay: '440ms' }}>
+              <div className="inline-flex items-center gap-3 border border-gold/40 bg-gold/10 px-4 py-2.5">
+                <span className="font-display text-2xl font-bold text-gold">19%</span>
+                <div>
+                  <div className="font-display text-[9px] font-bold uppercase tracking-[0.3em] text-gold">Capital Growth</div>
+                  <div className="font-display text-[9px] uppercase tracking-[0.2em] text-beech/50">Edmonton · Last 12 Months</div>
+                </div>
+              </div>
+            </div>
+
             <p className="fade-up text-beech/70 text-lg leading-relaxed max-w-xl mb-10"
               style={{ animationDelay: '520ms' }}>
-              A DA-approved dual-income duplex in Cairns&apos; southern growth corridor delivering{' '}
-              <span className="text-beech font-semibold">$1,500/week</span> combined rental income at a{' '}
-              <span className="text-gold font-semibold">5.2% gross yield</span> — fixed price, rent guaranteed.
+              Edmonton posted <span className="text-gold font-semibold">19% capital growth</span> last year — making it one of Cairns&apos; fastest-moving suburbs. Lock in now with a DA-approved dual-income duplex delivering{' '}
+              <span className="text-beech font-semibold">$1,500/week</span> at a{' '}
+              <span className="text-gold font-semibold">5.2% gross yield</span>, fixed price, rent guaranteed.
             </p>
 
             <div className="fade-up flex flex-col sm:flex-row gap-4" style={{ animationDelay: '680ms' }}>
@@ -144,7 +155,7 @@ export default function CairnsDual() {
         <div className="marquee py-3.5">
           {[0, 1].map(i => (
             <div key={i} className="marquee-row flex items-center">
-              {['DA APPROVED', 'BUILDING UNDERWAY', '4 MONTHS TO COMPLETION', 'NO BODY CORPORATE', '$1,500/WK COMBINED RENT', '5.2% GROSS YIELD', '12-MONTH RENT GUARANTEE', 'FIXED PRICE $1,500,000', 'EDMONTON · CAIRNS', 'DUAL INCOME DUPLEX'].map(t => (
+              {['19% CAPITAL GROWTH · EDMONTON', 'DA APPROVED', 'BUILDING UNDERWAY', '4 MONTHS TO COMPLETION', 'NO BODY CORPORATE', '$1,500/WK COMBINED RENT', '5.2% GROSS YIELD', '12-MONTH RENT GUARANTEE', 'FIXED PRICE $1,500,000', 'DUAL INCOME DUPLEX'].map(t => (
                 <span key={t} className="flex items-center gap-6 mr-6">
                   <span className="font-display text-[10px] font-bold tracking-[0.35em] uppercase text-beech-mute whitespace-nowrap">{t}</span>
                   <span className="text-gold text-lg">·</span>
@@ -158,13 +169,13 @@ export default function CairnsDual() {
       {/* ── STAT STRIP ── */}
       <section id="investment-overview" className="bg-ink border-b border-beech/10 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-beech/10">
+          <div className="grid grid-cols-2 lg:grid-cols-5 divide-x divide-y lg:divide-y-0 divide-beech/10">
             {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 80} className="px-8 py-10 text-center">
-                <div className="font-display text-4xl sm:text-5xl font-bold text-gold mb-1">
+              <Reveal key={s.label} delay={i * 80} className={`px-8 py-10 text-center ${i === 0 ? 'bg-gold/10 border-b border-gold/20 lg:border-b-0 col-span-2 lg:col-span-1' : ''}`}>
+                <div className={`font-display text-4xl sm:text-5xl font-bold mb-1 ${i === 0 ? 'text-gold text-5xl sm:text-6xl' : 'text-gold'}`}>
                   {s.prefix}<Counter end={s.value} suffix={s.suffix} duration={1600} />
                 </div>
-                <div className="font-display text-[10px] font-bold uppercase tracking-[0.25em] text-beech-mute">{s.label}</div>
+                <div className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] ${i === 0 ? 'text-gold/70' : 'text-beech-mute'}`}>{s.label}</div>
               </Reveal>
             ))}
           </div>
@@ -187,10 +198,10 @@ export default function CairnsDual() {
                   <em className="accent-serif text-gold lowercase">Dual income.</em>
                 </h2>
                 <p className="text-beech/60 leading-relaxed mb-5">
-                  Mountain View Estate is a DA-approved dual-income duplex in Edmonton — Cairns&apos; expanding southern growth corridor. Structured by Landmarx Development Pty Ltd and constructed by MyBuild Group, the project delivers two brand-new, fully independent dwellings on a single 600m² landholding.
+                  Edmonton recorded <span className="text-beech font-semibold">19% capital growth in the last 12 months</span> — one of the strongest growth rates in Far North Queensland. Mountain View Estate puts you into this market now: a DA-approved dual-income duplex structured by Landmarx Development Pty Ltd and built by MyBuild Group, delivering two fully independent dwellings on a single 600m² lot.
                 </p>
                 <p className="text-beech/60 leading-relaxed mb-8">
-                  Each unit earns $750 per week. Combined, the investment generates $1,500 per week — $78,000 annually — at a 5.2% gross yield, with a developer-funded 12-month rent guarantee from settlement.
+                  Each unit earns $750 per week. Combined, the investment generates $1,500 per week — $78,000 annually — at a 5.2% gross yield, with a developer-funded 12-month rent guarantee from settlement. The income pays you while the land works.
                 </p>
                 <div className="flex items-center gap-4">
                   <span className="h-px w-6 bg-gold/50" />
@@ -227,10 +238,27 @@ export default function CairnsDual() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
             {highlights.map((h, i) => (
               <Reveal key={h.title} delay={i * 70}>
-                <div className="group bg-paper hover:bg-ink transition-colors duration-500 p-8">
-                  <div className="font-display text-3xl font-bold text-ink/10 group-hover:text-gold transition-colors duration-500 mb-5">{String(i + 1).padStart(2, '0')}</div>
-                  <h3 className="font-display font-bold uppercase tracking-wide text-ink group-hover:text-beech transition-colors duration-500 mb-3">{h.title}</h3>
-                  <p className="text-sm text-ink/60 group-hover:text-beech/60 transition-colors duration-500 leading-relaxed">{h.desc}</p>
+                <div className={`group transition-colors duration-500 p-8 ${h.gold ? 'bg-ink col-span-1 sm:col-span-2 lg:col-span-3 flex flex-col sm:flex-row sm:items-center gap-6' : 'bg-paper hover:bg-ink'}`}>
+                  {h.gold ? (
+                    <>
+                      <div className="shrink-0">
+                        <div className="font-display text-6xl sm:text-7xl font-bold text-gold leading-none">19%</div>
+                        <div className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-gold/60 mt-1">Capital Growth</div>
+                        <div className="font-display text-[9px] uppercase tracking-[0.2em] text-beech/30 mt-0.5">Edmonton · Last 12 Months</div>
+                      </div>
+                      <div className="w-px h-16 bg-beech/10 hidden sm:block" />
+                      <div>
+                        <h3 className="font-display font-bold uppercase tracking-wide text-beech mb-3 text-lg">{h.title}</h3>
+                        <p className="text-sm text-beech/60 leading-relaxed max-w-2xl">{h.desc}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="font-display text-3xl font-bold text-ink/10 group-hover:text-gold transition-colors duration-500 mb-5">{String(i).padStart(2, '0')}</div>
+                      <h3 className="font-display font-bold uppercase tracking-wide text-ink group-hover:text-beech transition-colors duration-500 mb-3">{h.title}</h3>
+                      <p className="text-sm text-ink/60 group-hover:text-beech/60 transition-colors duration-500 leading-relaxed">{h.desc}</p>
+                    </>
+                  )}
                 </div>
               </Reveal>
             ))}
@@ -367,6 +395,7 @@ export default function CairnsDual() {
             <Reveal>
               <div className="border border-ink/10 divide-y divide-ink/10">
                 {[
+                  { label: 'Edmonton Capital Growth', val: '19%', note: 'Last 12 months — suburb median price movement', highlight: true },
                   { label: 'Total Fixed Price', val: '$1,500,000', note: 'No construction cost variation' },
                   { label: 'Rent — Unit 1', val: '$750/week', note: 'Proposed market rent' },
                   { label: 'Rent — Unit 2', val: '$750/week', note: 'Proposed market rent' },
@@ -430,18 +459,28 @@ export default function CairnsDual() {
                   Edmonton,<br />
                   <em className="accent-serif text-gold lowercase">Cairns South</em>
                 </h2>
+
+                {/* Capital growth callout */}
+                <div className="border-l-2 border-gold pl-5 mb-6">
+                  <div className="font-display text-4xl font-bold text-gold">19%</div>
+                  <div className="font-display text-xs font-bold uppercase tracking-[0.25em] text-gold/70">Capital Growth in 12 Months</div>
+                  <p className="text-beech/60 text-sm mt-2 leading-relaxed">
+                    Edmonton&apos;s median property price grew 19% over the last year — one of the highest rates in Far North Queensland and a signal of sustained demand from both owner-occupiers and investors.
+                  </p>
+                </div>
+
                 <p className="text-beech/60 leading-relaxed mb-5">
-                  Edmonton sits in Cairns&apos; southern growth corridor — one of the most active residential expansion zones in Far North Queensland. Driven by infrastructure investment, population growth, and increasing demand for quality rental accommodation, Edmonton offers strong fundamentals for long-term residential investment.
+                  Edmonton sits in Cairns&apos; southern growth corridor — one of the most active residential expansion zones in the region. Infrastructure investment, population growth, and tight rental supply are all driving values upward. Investors who move early capture the most growth.
                 </p>
                 <p className="text-beech/60 leading-relaxed mb-8">
-                  With Cairns continuing to grow as a regional hub for health, education, tourism, government and services, demand for well-positioned rental properties in southern suburbs remains robust.
+                  With Cairns continuing to expand as a hub for health, education, tourism and services, demand for quality housing in southern suburbs continues to outpace supply.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { title: 'Southern Growth Corridor', desc: 'Active residential expansion zone' },
-                    { title: 'Strong Rental Demand', desc: 'Consistent demand for quality housing' },
-                    { title: 'Infrastructure Investment', desc: 'Ongoing regional infrastructure spend' },
-                    { title: 'Regional Hub Growth', desc: 'Cairns growing as a services centre' },
+                    { title: '19% Capital Growth', desc: 'Suburb median — last 12 months' },
+                    { title: 'Strong Rental Demand', desc: 'Tight supply, consistent tenant demand' },
+                    { title: 'Infrastructure Investment', desc: 'Active regional infrastructure spend' },
+                    { title: 'Regional Hub Growth', desc: 'Cairns expanding as a services centre' },
                   ].map(p => (
                     <Reveal key={p.title}>
                       <div className="border border-beech/10 p-4">
@@ -502,7 +541,7 @@ export default function CairnsDual() {
               <em className="accent-serif text-gold lowercase">information pack</em>
             </h2>
             <p className="text-beech/60 leading-relaxed">
-              Leave your details and a member of the Landmarx team will call you to walk through the project, answer your questions and provide the full investment information.
+              Edmonton posted <span className="text-beech font-semibold">19% capital growth</span> last year and the market is still moving. Leave your details and a member of the Landmarx team will call you to walk through the numbers, answer your questions, and send you the full information pack.
             </p>
           </Reveal>
 
