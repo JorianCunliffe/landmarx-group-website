@@ -155,7 +155,7 @@ export default function CairnsDual() {
         <div className="marquee py-3.5">
           {[0, 1].map(i => (
             <div key={i} className="marquee-row flex items-center">
-              {['19% CAPITAL GROWTH · EDMONTON', 'DA APPROVED', 'BUILDING UNDERWAY', '4 MONTHS TO COMPLETION', 'NO BODY CORPORATE', '$1,500/WK COMBINED RENT', '5.2% GROSS YIELD', '12-MONTH RENT GUARANTEE', 'FIXED PRICE $1,500,000', 'DUAL INCOME DUPLEX'].map(t => (
+              {['19% CAPITAL GROWTH · EDMONTON', 'DA APPROVED', 'BUILDING UNDERWAY', '4 MONTHS TO COMPLETION', 'NO BODY CORPORATE', '$1,500/WK COMBINED RENT', '12-MONTH RENT GUARANTEE', 'FIXED PRICE $1,500,000', 'DUAL INCOME DUPLEX'].map(t => (
                 <span key={t} className="flex items-center gap-6 mr-6">
                   <span className="font-display text-[10px] font-bold tracking-[0.35em] uppercase text-beech-mute whitespace-nowrap">{t}</span>
                   <span className="text-gold text-lg">·</span>
