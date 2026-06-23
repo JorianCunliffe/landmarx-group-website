@@ -7,12 +7,14 @@ export default function Counter({
   prefix = '',
   suffix = '',
   duration = 1800,
+  decimals = 0,
   className = '',
 }: {
   end: number
   prefix?: string
   suffix?: string
   duration?: number
+  decimals?: number
   className?: string
 }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -37,7 +39,8 @@ export default function Counter({
         const tick = (now: number) => {
           const t = Math.min((now - start) / duration, 1)
           const eased = 1 - Math.pow(1 - t, 4)
-          setValue(Math.round(end * eased))
+          const raw = end * eased
+          setValue(decimals > 0 ? parseFloat(raw.toFixed(decimals)) : Math.round(raw))
           if (t < 1) raf = requestAnimationFrame(tick)
         }
         raf = requestAnimationFrame(tick)
@@ -49,12 +52,12 @@ export default function Counter({
       io.disconnect()
       cancelAnimationFrame(raf)
     }
-  }, [end, duration])
+  }, [end, duration, decimals])
 
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {value.toLocaleString()}
+      {decimals > 0 ? value.toFixed(decimals) : value.toLocaleString()}
       {suffix}
     </span>
   )

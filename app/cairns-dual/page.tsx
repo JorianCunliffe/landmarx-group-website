@@ -11,9 +11,9 @@ import Counter from '@/components/Counter'
 
 const stats = [
   { value: 19, suffix: '%', label: 'Capital Growth — Edmonton (Last 12 Months)', prefix: '' },
-  { value: 5.2, suffix: '%', label: 'Gross Yield', prefix: '' },
-  { value: 1500, suffix: '/wk', label: 'Combined Rent', prefix: '$' },
-  { value: 78000, suffix: '/yr', label: 'Annual Income', prefix: '$' },
+  { value: 5.2, suffix: '%', label: 'Gross Yield', prefix: '', decimals: 1 },
+  { value: 1.5, suffix: 'K', label: 'Combined Rent', prefix: '$', decimals: 1 },
+  { value: 78, suffix: 'K/yr', label: 'Annual Income', prefix: '$' },
   { value: 4, suffix: ' months', label: 'To Completion', prefix: '' },
 ]
 
@@ -62,11 +62,21 @@ const callTimes = ['Morning (8am–12pm)', 'Afternoon (12pm–5pm)', 'Evening (5
 
 export default function CairnsDual() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', phone: '', callTime: '', message: '' })
   const [active, setActive] = useState(0)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setSubmitting(true)
+    try {
+      await fetch('/api/cairns-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+    } catch {}
+    setSubmitting(false)
     setSubmitted(true)
   }
 
@@ -134,7 +144,7 @@ export default function CairnsDual() {
                 Book a Call →
               </a>
               <a
-                href="#investment-overview"
+                href="#financial-summary"
                 className="btn-sweep btn-sweep-beech font-display font-bold uppercase tracking-widest text-sm px-8 py-4 border border-beech/30 text-beech/70 hover:text-ink transition-colors duration-400"
               >
                 View the Numbers
@@ -173,7 +183,7 @@ export default function CairnsDual() {
             {stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 80} className={`px-8 py-10 text-center ${i === 0 ? 'bg-gold/10 border-b border-gold/20 lg:border-b-0 col-span-2 lg:col-span-1' : ''}`}>
                 <div className={`font-display text-4xl sm:text-5xl font-bold mb-1 ${i === 0 ? 'text-gold text-5xl sm:text-6xl' : 'text-gold'}`}>
-                  {s.prefix}<Counter end={s.value} suffix={s.suffix} duration={1600} />
+                  {s.prefix}<Counter end={s.value} suffix={s.suffix} duration={1600} decimals={(s as { decimals?: number }).decimals ?? 0} />
                 </div>
                 <div className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] ${i === 0 ? 'text-gold/70' : 'text-beech-mute'}`}>{s.label}</div>
               </Reveal>
@@ -378,7 +388,7 @@ export default function CairnsDual() {
       </section>
 
       {/* ── FINANCIAL SUMMARY ── */}
-      <section className="py-20 lg:py-28 bg-paper bg-grid-paper">
+      <section id="financial-summary" className="py-20 lg:py-28 bg-paper bg-grid-paper scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-14 text-center">
             <div className="flex items-center justify-center gap-4 mb-5">
@@ -617,9 +627,10 @@ export default function CairnsDual() {
                 </div>
                 <button
                   type="submit"
-                  className="btn-sweep btn-sweep-gold w-full font-display font-bold uppercase tracking-widest text-sm px-8 py-4 border border-gold text-gold hover:text-ink transition-colors duration-400"
+                  disabled={submitting}
+                  className="btn-sweep btn-sweep-gold w-full font-display font-bold uppercase tracking-widest text-sm px-8 py-4 border border-gold text-gold hover:text-ink transition-colors duration-400 disabled:opacity-50"
                 >
-                  Book My Call →
+                  {submitting ? 'Sending…' : 'Book My Call →'}
                 </button>
                 <p className="text-center text-xs text-beech-mute/60 leading-relaxed">
                   Your information is kept confidential and used only to arrange a call about this project. This page is for information purposes only and does not constitute an offer to invest.
