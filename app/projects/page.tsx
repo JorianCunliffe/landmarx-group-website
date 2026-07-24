@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import Reveal from '@/components/Reveal'
 
 export const metadata: Metadata = {
@@ -40,6 +41,18 @@ const pipeline = [
     desc: 'A purpose-built health and wellness precinct in the heart of Cairns City, designed to meet growing demand for modern medical, allied health and specialist service space across Far North Queensland.',
     role: 'Project structuring, tenant engagement, development pathway and delivery coordination.',
     cta: 'EOI open — documentation available under NDA',
+    ctaHref: '/register-interest',
+  },
+  {
+    status: 'Active — Now Selling',
+    active: true,
+    sector: 'Housing & Residential',
+    name: 'Mountain View Estate',
+    desc: 'DA-approved dual-income duplex in Edmonton, Cairns South. Two fully independent 3-bed dwellings on a single 600m² lot — $1.5K/week combined rent, 5.2% gross yield, 12-month rent guarantee. Edmonton recorded 19% capital growth last year.',
+    role: 'Project structuring and capital pathway — constructed by MyBuild Group. 4 months to completion.',
+    cta: 'Find Out More',
+    ctaHref: '/cairns-dual',
+    image: '/cairns-dual/exterior.jpg',
   },
   {
     status: 'Under Assessment',
@@ -153,42 +166,56 @@ export default function Projects() {
             {pipeline.map((p, i) => (
               <Reveal key={p.name} delay={i * 100} className="h-full">
                 <article
-                  className={`card-lift h-full flex flex-col border p-9 ${
+                  className={`card-lift h-full flex flex-col border ${
                     p.active
                       ? 'bg-surface border-gold/40'
                       : 'bg-surface/40 border-beech/10 hover:border-beech/25'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-6">
-                    <span
-                      className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border ${
-                        p.active ? 'border-gold/50 text-gold' : 'border-beech/20 text-beech-mute'
-                      }`}
-                    >
-                      {p.status}
-                    </span>
-                    {p.active && <span className="w-2 h-2 rounded-full bg-gold animate-pulse" aria-hidden />}
-                  </div>
-                  <p className="text-[11px] uppercase tracking-[0.3em] text-beech-mute mb-3">{p.sector}</p>
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-beech mb-4">{p.name}</h3>
-                  <p className="text-sm text-beech/60 leading-relaxed mb-5">{p.desc}</p>
-                  <p className="text-xs text-beech-mute leading-relaxed mb-8 flex-1">
-                    <span className="text-beech/70 font-semibold">Landmarx role: </span>
-                    {p.role}
-                  </p>
-                  {p.cta ? (
-                    <Link
-                      href="/register-interest"
-                      className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold group"
-                    >
-                      {p.cta}
-                      <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
-                    </Link>
-                  ) : (
-                    <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-beech-mute">
-                      Details released in stages
-                    </span>
+                  {(p as { image?: string }).image && (
+                    <div className="relative aspect-[16/7] overflow-hidden shrink-0">
+                      <Image
+                        src={(p as { image?: string }).image!}
+                        alt={p.name}
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
+                    </div>
                   )}
+                  <div className="flex flex-col flex-1 p-9">
+                    <div className="flex items-center justify-between mb-6">
+                      <span
+                        className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border ${
+                          p.active ? 'border-gold/50 text-gold' : 'border-beech/20 text-beech-mute'
+                        }`}
+                      >
+                        {p.status}
+                      </span>
+                      {p.active && <span className="w-2 h-2 rounded-full bg-gold animate-pulse" aria-hidden />}
+                    </div>
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-beech-mute mb-3">{p.sector}</p>
+                    <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-beech mb-4">{p.name}</h3>
+                    <p className="text-sm text-beech/60 leading-relaxed mb-5">{p.desc}</p>
+                    <p className="text-xs text-beech-mute leading-relaxed mb-8 flex-1">
+                      <span className="text-beech/70 font-semibold">Landmarx role: </span>
+                      {p.role}
+                    </p>
+                    {p.cta ? (
+                      <Link
+                        href={(p as { ctaHref?: string }).ctaHref ?? '/register-interest'}
+                        className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold group"
+                      >
+                        {p.cta}
+                        <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
+                      </Link>
+                    ) : (
+                      <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-beech-mute">
+                        Details released in stages
+                      </span>
+                    )}
+                  </div>
                 </article>
               </Reveal>
             ))}

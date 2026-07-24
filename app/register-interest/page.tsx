@@ -42,12 +42,20 @@ const inputClass =
 
 export default function RegisterInterest() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({
     name: '', email: '', phone: '', organisation: '', interestType: '', message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setSubmitting(true)
+    await fetch('/api/register-interest', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+    setSubmitting(false)
     setSubmitted(true)
   }
 
@@ -213,9 +221,10 @@ export default function RegisterInterest() {
                 </div>
                 <button
                   type="submit"
-                  className="btn-sweep btn-sweep-beech w-full bg-gold text-ink font-display font-bold uppercase tracking-[0.15em] text-sm px-10 py-4"
+                  disabled={submitting}
+                  className="btn-sweep btn-sweep-beech w-full bg-gold text-ink font-display font-bold uppercase tracking-[0.15em] text-sm px-10 py-4 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Register Interest
+                  {submitting ? 'Sending…' : 'Register Interest'}
                 </button>
               </form>
             </Reveal>
