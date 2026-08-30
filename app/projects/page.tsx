@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 const focusAreas = [
   {
     num: '01',
-    title: 'Health & Medical Precincts',
-    desc: 'Purpose-built health, medical, allied health and wellness projects responding to demand for modern service infrastructure in growing communities.',
+    title: 'Commercial & Mixed-Use Projects',
+    desc: 'Retail, office, mixed-use and activation precincts where underutilised sites can be repositioned into commercially viable and community-relevant assets.',
   },
   {
     num: '02',
@@ -21,8 +21,8 @@ const focusAreas = [
   },
   {
     num: '03',
-    title: 'Commercial & Mixed-Use Projects',
-    desc: 'Retail, office, mixed-use and activation precincts where underutilised sites can be repositioned into commercially viable and community-relevant assets.',
+    title: 'Premium Co-Living',
+    desc: 'Elevated share-style accommodation for professionals and short-term residents — private ensuited rooms, curated shared amenity and a hospitality-grade living experience.',
   },
   {
     num: '04',
@@ -35,11 +35,22 @@ const pipeline = [
   {
     status: 'Active Project',
     active: true,
-    sector: 'Health & Wellness Precinct',
-    name: 'Lake St Medical',
-    desc: 'A purpose-built health and wellness precinct in the heart of Cairns City, designed to meet growing demand for modern medical, allied health and specialist service space across Far North Queensland.',
-    role: 'Project structuring, tenant engagement, development pathway and delivery coordination.',
-    cta: 'EOI open — documentation available under NDA',
+    sector: 'Internal Services & Coworking Building',
+    name: 'The HQ Building',
+    desc: 'A dedicated internal services building on Lake Street, Cairns, bringing independent property, construction and development businesses into one connected environment — with premium shared amenity, VIP facilities and flexible office or membership options.',
+    role: 'Development, structuring and delivery of the building and its tenant ecosystem.',
+    cta: 'Register interest — full details available',
+    href: '/the-hq',
+  },
+  {
+    status: 'Active Project',
+    active: true,
+    sector: 'Dual-Income Residential',
+    name: 'Mountain View Estate',
+    desc: 'A DA-approved dual-income duplex development in Edmonton, Cairns, delivering two independent dwellings on a single 600m² lot with a fixed price, rent guarantee and no body corporate.',
+    role: 'Project structuring, delivery coordination and investor engagement — built by MyBuild Group.',
+    cta: 'View investment details',
+    href: '/cairns-dual',
   },
   {
     status: 'Under Assessment',
@@ -150,15 +161,12 @@ export default function Projects() {
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {pipeline.map((p, i) => (
-              <Reveal key={p.name} delay={i * 100} className="h-full">
-                <article
-                  className={`card-lift h-full flex flex-col border p-9 ${
-                    p.active
-                      ? 'bg-surface border-gold/40'
-                      : 'bg-surface/40 border-beech/10 hover:border-beech/25'
-                  }`}
-                >
+            {pipeline.map((p, i) => {
+              const cardClass = `card-lift h-full flex flex-col border p-9 ${
+                p.active ? 'bg-surface border-gold/40' : 'bg-surface/40 border-beech/10 hover:border-beech/25'
+              }`
+              const cardBody = (
+                <>
                   <div className="flex items-center justify-between mb-6">
                     <span
                       className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border ${
@@ -177,21 +185,29 @@ export default function Projects() {
                     {p.role}
                   </p>
                   {p.cta ? (
-                    <Link
-                      href="/register-interest"
-                      className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold group"
-                    >
+                    <span className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold">
                       {p.cta}
                       <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
-                    </Link>
+                    </span>
                   ) : (
                     <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-beech-mute">
                       Details released in stages
                     </span>
                   )}
-                </article>
-              </Reveal>
-            ))}
+                </>
+              )
+              return (
+                <Reveal key={p.name} delay={i * 100} className="h-full">
+                  {p.cta ? (
+                    <Link href={p.href || '/register-interest'} className="group block h-full">
+                      <article className={cardClass}>{cardBody}</article>
+                    </Link>
+                  ) : (
+                    <article className={cardClass}>{cardBody}</article>
+                  )}
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>

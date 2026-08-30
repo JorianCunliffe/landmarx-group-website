@@ -248,7 +248,7 @@ cd landmarx-group-website`}
               'Update the hero headline on the homepage to "New headline text here"',
               'Change the phone number in the footer to +61 400 000 000',
               'Add a new team member called Sarah Smith — Director of Finance — to the About page',
-              'Update the Lake St Medical project description to say the EOI closes 31 March 2026',
+              'Update the HQ Building project description to say leasing opens 31 March 2026',
               'Change the email address in the Contact page to newmail@landmarx.co',
             ].map(ex => (
               <div key={ex} className="bg-[#F7F8FA] border border-slate-200 rounded px-4 py-3 text-sm text-slate-700 font-mono">

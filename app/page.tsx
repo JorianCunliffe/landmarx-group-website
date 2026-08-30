@@ -36,13 +36,24 @@ const divisions = [
 
 const projects = [
   {
+    status: 'Leasing Now',
+    active: true,
+    sector: 'Internal Services & Coworking Building',
+    name: 'The HQ Building',
+    desc: 'A dedicated internal services building on Lake Street, Cairns, bringing independent property, construction and development businesses into one connected environment — with premium shared amenity and VIP facilities.',
+    relevance:
+      'The Landmarx platform in action — structuring, developing and delivering its own home base, and bringing the people who build Cairns together under one roof.',
+    href: '/the-hq',
+  },
+  {
     status: 'EOI Open',
     active: true,
-    sector: 'Health & Wellness Precinct',
-    name: 'Lake St Medical',
-    desc: 'A purpose-built health and wellness precinct in the heart of Cairns City, designed to meet growing demand for modern medical, allied health and specialist service space across Far North Queensland.',
+    sector: 'Dual-Income Residential',
+    name: 'Mountain View Estate',
+    desc: 'A DA-approved dual-income duplex in Edmonton, Cairns — two fully independent dwellings on one 600m² lot, delivering $1,500 per week combined rent with a 12-month rent guarantee.',
     relevance:
-      'The Landmarx platform in action — identifying a clear market need, shaping the project pathway, and creating a structured opportunity for tenants, investors and delivery partners.',
+      'A structured, fixed-price investment opportunity in one of Cairns\' fastest-growing suburbs, built and delivered through the Landmarx platform.',
+    href: '/cairns-dual',
   },
   {
     status: 'Under Assessment',
@@ -259,15 +270,12 @@ export default function Home() {
           </Reveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {projects.map((p, i) => (
-              <Reveal key={p.name} delay={i * 110}>
-                <article
-                  className={`card-lift h-full flex flex-col border p-8 ${
-                    p.active
-                      ? 'bg-surface border-gold/40'
-                      : 'bg-surface/40 border-beech/10 hover:border-beech/25'
-                  }`}
-                >
+            {projects.map((p, i) => {
+              const cardClass = `card-lift h-full flex flex-col border p-8 ${
+                p.active ? 'bg-surface border-gold/40' : 'bg-surface/40 border-beech/10 hover:border-beech/25'
+              }`
+              const cardBody = (
+                <>
                   <div className="flex items-center justify-between mb-6">
                     <span
                       className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border ${
@@ -286,21 +294,29 @@ export default function Home() {
                     {p.relevance}
                   </p>
                   {p.active ? (
-                    <Link
-                      href="/projects"
-                      className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold group"
-                    >
+                    <span className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold">
                       View project details
                       <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
-                    </Link>
+                    </span>
                   ) : (
                     <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-beech-mute">
                       Details released in stages
                     </span>
                   )}
-                </article>
-              </Reveal>
-            ))}
+                </>
+              )
+              return (
+                <Reveal key={p.name} delay={i * 110} className="h-full">
+                  {p.active ? (
+                    <Link href={p.href || '/projects'} className="group block h-full">
+                      <article className={cardClass}>{cardBody}</article>
+                    </Link>
+                  ) : (
+                    <article className={cardClass}>{cardBody}</article>
+                  )}
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>
