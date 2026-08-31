@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import Reveal from '@/components/Reveal'
 
 export const metadata: Metadata = {
@@ -41,6 +42,7 @@ const pipeline = [
     role: 'Development, structuring and delivery of the building and its tenant ecosystem.',
     cta: 'Register interest — full details available',
     href: '/the-hq',
+    image: '/the-hq/exterior-night.jpg',
   },
   {
     status: 'Active Project',
@@ -51,6 +53,29 @@ const pipeline = [
     role: 'Project structuring, delivery coordination and investor engagement — built by MyBuild Group.',
     cta: 'View investment details',
     href: '/cairns-dual',
+    image: '/cairns-dual/exterior.jpg',
+  },
+  {
+    status: 'Secured & In Delivery',
+    active: true,
+    sector: 'Co-Living Development',
+    name: 'The Quarters Severin',
+    desc: 'A 16-suite co-living development in Parramatta Park, Cairns, delivered across two connected three-storey buildings with shared pool, courtyard and communal facilities.',
+    role: 'Concept, origination, structuring and delivery coordination, built by MyBuild Commercial.',
+    cta: 'See the project',
+    href: '/the-quarters-severin',
+    image: '/the-quarters-severin/exterior-dusk.jpg',
+  },
+  {
+    status: 'Now Selling',
+    active: true,
+    sector: 'Co-Living Development',
+    name: '262 Lake Street',
+    desc: 'A three-storey, 14-suite co-living development in North Cairns, generating an indicative 8.6% to 8.7% net rental yield. Selling now as a single $4.5M package.',
+    role: 'Origination, structuring and delivery coordination.',
+    cta: 'View investment details',
+    href: '/262-lake-street',
+    image: '/262-lake-street/exterior-tropical-green.jpg',
   },
   {
     status: 'Under Assessment',
@@ -162,38 +187,52 @@ export default function Projects() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {pipeline.map((p, i) => {
-              const cardClass = `card-lift h-full flex flex-col border p-9 ${
+              const cardClass = `card-lift h-full flex flex-col border overflow-hidden ${
                 p.active ? 'bg-surface border-gold/40' : 'bg-surface/40 border-beech/10 hover:border-beech/25'
               }`
               const cardBody = (
                 <>
-                  <div className="flex items-center justify-between mb-6">
-                    <span
-                      className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border ${
-                        p.active ? 'border-gold/50 text-gold' : 'border-beech/20 text-beech-mute'
-                      }`}
-                    >
-                      {p.status}
-                    </span>
-                    {p.active && <span className="w-2 h-2 rounded-full bg-gold animate-pulse" aria-hidden />}
-                  </div>
-                  <p className="text-[11px] uppercase tracking-[0.3em] text-beech-mute mb-3">{p.sector}</p>
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-beech mb-4">{p.name}</h3>
-                  <p className="text-sm text-beech/60 leading-relaxed mb-5">{p.desc}</p>
-                  <p className="text-xs text-beech-mute leading-relaxed mb-8 flex-1">
-                    <span className="text-beech/70 font-semibold">Landmarx role: </span>
-                    {p.role}
-                  </p>
-                  {p.cta ? (
-                    <span className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold">
-                      {p.cta}
-                      <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
-                    </span>
-                  ) : (
-                    <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-beech-mute">
-                      Details released in stages
-                    </span>
+                  {p.image && (
+                    <div className="relative aspect-[16/10] overflow-hidden shrink-0">
+                      <Image
+                        src={p.image}
+                        alt={p.name}
+                        fill
+                        className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/10 to-transparent" />
+                    </div>
                   )}
+                  <div className="p-9 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-6">
+                      <span
+                        className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border ${
+                          p.active ? 'border-gold/50 text-gold' : 'border-beech/20 text-beech-mute'
+                        }`}
+                      >
+                        {p.status}
+                      </span>
+                      {p.active && <span className="w-2 h-2 rounded-full bg-gold animate-pulse" aria-hidden />}
+                    </div>
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-beech-mute mb-3">{p.sector}</p>
+                    <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-beech mb-4">{p.name}</h3>
+                    <p className="text-sm text-beech/60 leading-relaxed mb-5">{p.desc}</p>
+                    <p className="text-xs text-beech-mute leading-relaxed mb-8 flex-1">
+                      <span className="text-beech/70 font-semibold">Landmarx role: </span>
+                      {p.role}
+                    </p>
+                    {p.cta ? (
+                      <span className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold">
+                        {p.cta}
+                        <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
+                      </span>
+                    ) : (
+                      <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-beech-mute">
+                        Details released in stages
+                      </span>
+                    )}
+                  </div>
                 </>
               )
               return (

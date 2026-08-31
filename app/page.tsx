@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Reveal from '@/components/Reveal'
 import Counter from '@/components/Counter'
 import Marquee from '@/components/Marquee'
@@ -44,6 +45,7 @@ const projects = [
     relevance:
       'The Landmarx platform in action — structuring, developing and delivering its own home base, and bringing the people who build Cairns together under one roof.',
     href: '/the-hq',
+    image: '/the-hq/exterior-night.jpg',
   },
   {
     status: 'EOI Open',
@@ -54,6 +56,29 @@ const projects = [
     relevance:
       'A structured, fixed-price investment opportunity in one of Cairns\' fastest-growing suburbs, built and delivered through the Landmarx platform.',
     href: '/cairns-dual',
+    image: '/cairns-dual/exterior.jpg',
+  },
+  {
+    status: 'Secured & In Delivery',
+    active: true,
+    sector: 'Co-Living Development',
+    name: 'The Quarters Severin',
+    desc: 'A 16-suite co-living development in Parramatta Park, Cairns, built across two connected buildings around a shared pool and courtyard, now secured and under construction.',
+    relevance:
+      'A live case study of the Landmarx platform in action, addressing Far North Queensland\'s workforce and rental housing shortage from origination through to delivery.',
+    href: '/the-quarters-severin',
+    image: '/the-quarters-severin/exterior-dusk.jpg',
+  },
+  {
+    status: 'Now Selling',
+    active: true,
+    sector: 'Co-Living Development',
+    name: '262 Lake Street',
+    desc: 'A purpose-built, 14-suite co-living development on a corner site in North Cairns, generating an indicative 8.6% net rental yield. Now selling as a single $4.5M package.',
+    relevance:
+      'A structured, income-producing co-living asset in one of Cairns\' emerging investment categories, delivered end-to-end through the Landmarx platform.',
+    href: '/262-lake-street',
+    image: '/262-lake-street/exterior-tropical-green.jpg',
   },
   {
     status: 'Under Assessment',
@@ -111,7 +136,19 @@ export default function Home() {
   return (
     <>
       {/* ============================== Hero ============================== */}
-      <section className="relative min-h-svh flex flex-col justify-center overflow-hidden bg-grid">
+      <section className="relative min-h-svh flex flex-col justify-center overflow-hidden bg-ink">
+        <div className="absolute inset-0">
+          <Image
+            src="/the-hq/exterior-night.jpg"
+            alt="The HQ Building, Lake Street, Cairns"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/40" />
+          <div className="absolute inset-0 bg-ink/30" />
+        </div>
         <div className="glow absolute -top-40 -right-40 w-[42rem] h-[42rem]" aria-hidden />
         <div className="glow absolute -bottom-64 -left-64 w-[50rem] h-[50rem]" style={{ animationDelay: '3s' }} aria-hidden />
 
@@ -271,38 +308,52 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {projects.map((p, i) => {
-              const cardClass = `card-lift h-full flex flex-col border p-8 ${
+              const cardClass = `card-lift h-full flex flex-col border overflow-hidden ${
                 p.active ? 'bg-surface border-gold/40' : 'bg-surface/40 border-beech/10 hover:border-beech/25'
               }`
               const cardBody = (
                 <>
-                  <div className="flex items-center justify-between mb-6">
-                    <span
-                      className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border ${
-                        p.active ? 'border-gold/50 text-gold' : 'border-beech/20 text-beech-mute'
-                      }`}
-                    >
-                      {p.status}
-                    </span>
-                    {p.active && <span className="w-2 h-2 rounded-full bg-gold animate-pulse" aria-hidden />}
-                  </div>
-                  <p className="text-[11px] uppercase tracking-[0.3em] text-beech-mute mb-3">{p.sector}</p>
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-beech mb-4">{p.name}</h3>
-                  <p className="text-sm text-beech/60 leading-relaxed mb-5">{p.desc}</p>
-                  <p className="text-xs text-beech-mute leading-relaxed mb-8 flex-1">
-                    <span className="text-beech/70 font-semibold">Platform relevance: </span>
-                    {p.relevance}
-                  </p>
-                  {p.active ? (
-                    <span className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold">
-                      View project details
-                      <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
-                    </span>
-                  ) : (
-                    <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-beech-mute">
-                      Details released in stages
-                    </span>
+                  {p.image && (
+                    <div className="relative aspect-[16/10] overflow-hidden shrink-0">
+                      <Image
+                        src={p.image}
+                        alt={p.name}
+                        fill
+                        className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/10 to-transparent" />
+                    </div>
                   )}
+                  <div className="p-8 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-6">
+                      <span
+                        className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1.5 border ${
+                          p.active ? 'border-gold/50 text-gold' : 'border-beech/20 text-beech-mute'
+                        }`}
+                      >
+                        {p.status}
+                      </span>
+                      {p.active && <span className="w-2 h-2 rounded-full bg-gold animate-pulse" aria-hidden />}
+                    </div>
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-beech-mute mb-3">{p.sector}</p>
+                    <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-beech mb-4">{p.name}</h3>
+                    <p className="text-sm text-beech/60 leading-relaxed mb-5">{p.desc}</p>
+                    <p className="text-xs text-beech-mute leading-relaxed mb-8 flex-1">
+                      <span className="text-beech/70 font-semibold">Platform relevance: </span>
+                      {p.relevance}
+                    </p>
+                    {p.active ? (
+                      <span className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold">
+                        View project details
+                        <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
+                      </span>
+                    ) : (
+                      <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-beech-mute">
+                        Details released in stages
+                      </span>
+                    )}
+                  </div>
                 </>
               )
               return (
@@ -389,7 +440,7 @@ export default function Home() {
                 high-value real asset opportunities.
               </p>
               <Link
-                href="/about"
+                href="/team"
                 className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold group"
               >
                 Meet the full team

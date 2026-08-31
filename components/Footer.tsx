@@ -38,6 +38,7 @@ export default function Footer() {
             <h4 className="font-display text-xs font-bold uppercase tracking-[0.3em] text-gold mb-6">Company</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/about" className="text-beech/70 hover:text-gold transition-colors">About</Link></li>
+              <li><Link href="/team" className="text-beech/70 hover:text-gold transition-colors">Team</Link></li>
               <li><Link href="/contact" className="text-beech/70 hover:text-gold transition-colors">Contact</Link></li>
               <li><Link href="/register-interest" className="text-beech/70 hover:text-gold transition-colors">Register Interest</Link></li>
             </ul>
@@ -48,13 +49,12 @@ export default function Footer() {
             <h4 className="font-display text-xs font-bold uppercase tracking-[0.3em] text-gold mb-6">Contact</h4>
             <ul className="space-y-3 text-sm text-beech/70">
               <li>
-                <a href="tel:+61477842007" className="hover:text-gold transition-colors">+61 477 842 007</a>
+                <a href="tel:+61415828522" className="hover:text-gold transition-colors">+61 415 828 522</a>
               </li>
               <li>
                 <a href="mailto:develop@landmarx.co" className="hover:text-gold transition-colors">develop@landmarx.co</a>
               </li>
               <li className="leading-relaxed">12/452 Sheridan St<br />Cairns North QLD 4870</li>
-              <li className="text-beech-mute">Mon – Fri: 08:00 – 16:00</li>
             </ul>
           </div>
         </div>

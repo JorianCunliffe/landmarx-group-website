@@ -63,14 +63,14 @@ export default function Contact() {
               <div className="space-y-8 text-sm">
                 <div>
                   <p className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-gold mb-2">Email</p>
-                  <a href="mailto:opportunities@landmarx.co" className="text-beech/80 hover:text-gold transition-colors">
-                    opportunities@landmarx.co
+                  <a href="mailto:develop@landmarx.co" className="text-beech/80 hover:text-gold transition-colors">
+                    develop@landmarx.co
                   </a>
                 </div>
                 <div>
                   <p className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-gold mb-2">Phone</p>
-                  <a href="tel:+61477842007" className="text-beech/80 hover:text-gold transition-colors">
-                    +61 477 842 007
+                  <a href="tel:+61415828522" className="text-beech/80 hover:text-gold transition-colors">
+                    +61 415 828 522
                   </a>
                 </div>
                 <div>
@@ -79,11 +79,6 @@ export default function Contact() {
                     12/452 Sheridan St<br />
                     Cairns North QLD 4870
                   </p>
-                </div>
-                <div>
-                  <p className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-gold mb-2">Operating Hours</p>
-                  <p className="text-beech/80">Monday – Friday: 08:00 – 16:00</p>
-                  <p className="text-beech-mute">Saturday – Sunday: Closed</p>
                 </div>
               </div>
             </Reveal>

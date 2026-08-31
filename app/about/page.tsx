@@ -31,34 +31,6 @@ const values = [
   },
 ]
 
-const leaders = [
-  {
-    initials: 'JC',
-    name: 'Jorian Cunliffe',
-    role: 'Managing Director',
-    bio: 'Jorian brings more than 20 years of leadership experience across education, healthcare infrastructure, real estate development, energy and construction. He leads Landmarx with a focus on strategy, partnerships, organisational growth and project origination — converting complex opportunities into structured pathways for investment and delivery.',
-  },
-  {
-    initials: 'BM',
-    name: 'Beau Moriarty',
-    role: 'Director of Construction',
-    bio: 'Beau brings more than 15 years of construction and project delivery experience across project management, strategic planning and complex infrastructure. He leads construction strategy, procurement, buildability and delivery planning — ensuring every Landmarx opportunity is assessed with practical execution discipline from the outset.',
-  },
-  {
-    initials: 'BM',
-    name: 'Ben Mansfield',
-    role: 'Director — Growth & Investment',
-    bio: "Ben brings more than 20 years of global experience across major infrastructure, capital programs, government advisory and complex delivery environments. Recognised as Australian Project Manager of the Year, Ben's portfolio experience exceeds $120B across major public and private sector programs. He leads Landmarx's growth and investment strategy, capital positioning, stakeholder alignment and structuring.",
-  },
-]
-
-const credibility = [
-  { stat: '100+', label: 'Years combined leadership and delivery experience across the broader network' },
-  { stat: '$120B+', label: 'Major project, infrastructure and housing portfolio experience' },
-  { stat: '8 Sectors', label: 'Property, infrastructure, housing, health, energy, education, construction and investment' },
-  { stat: 'End-to-End', label: 'Origination, structuring, governance, capital and delivery discipline in one model' },
-]
-
 export default function About() {
   return (
     <>
@@ -150,52 +122,32 @@ export default function About() {
         </div>
       </section>
 
-      {/* Leadership */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Leadership teaser */}
+      <section className="relative py-24 lg:py-32 overflow-hidden border-t border-beech/10">
         <div className="absolute bottom-0 left-0 pointer-events-none select-none" aria-hidden>
           <p className="outline-text font-display font-bold uppercase text-[16vw] leading-none -ml-6">Team</p>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-16 max-w-3xl">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Reveal className="max-w-3xl mx-auto">
             <p className="font-display text-xs font-bold tracking-[0.4em] uppercase text-gold mb-5">Leadership</p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-beech leading-tight mb-6">
               Leadership built <em className="accent-serif text-gold lowercase">for execution</em>
             </h2>
-            <p className="text-beech/60 leading-relaxed">
+            <p className="text-beech/60 leading-relaxed mb-10">
               Landmarx is led by operators with experience across development, construction,
               investment, infrastructure, government, strategy and complex project delivery. The
-              team was assembled to do more than identify opportunities — it is built to assess
+              team was assembled to do more than identify opportunities, it is built to assess
               risk, align stakeholders, structure commercial pathways and move real asset
               opportunities toward investment and execution.
             </p>
+            <Link
+              href="/team"
+              className="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-gold group"
+            >
+              Meet the team
+              <span className="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden>→</span>
+            </Link>
           </Reveal>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
-            {leaders.map((l, i) => (
-              <Reveal key={l.name} delay={i * 110} className="h-full">
-                <article className="card-lift h-full bg-surface border border-beech/10 hover:border-gold/40 p-8 flex flex-col">
-                  <div className="w-16 h-16 border border-gold/40 flex items-center justify-center mb-8">
-                    <span className="font-display text-xl font-bold text-gold">{l.initials}</span>
-                  </div>
-                  <h3 className="font-display text-xl font-bold uppercase tracking-tight text-beech mb-1">{l.name}</h3>
-                  <p className="font-display text-[11px] font-bold uppercase tracking-[0.25em] text-gold mb-6">{l.role}</p>
-                  <p className="text-sm text-beech/60 leading-relaxed">{l.bio}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Credibility row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-beech/10 border border-beech/10">
-            {credibility.map((c, i) => (
-              <Reveal key={c.stat} delay={i * 80} className="h-full">
-                <div className="h-full bg-ink-deep p-8">
-                  <p className="font-display text-3xl font-bold text-gold mb-3">{c.stat}</p>
-                  <p className="text-xs text-beech-mute leading-relaxed">{c.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 

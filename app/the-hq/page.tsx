@@ -276,7 +276,7 @@ export default function TheHQ() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
             {highlights.map((h, i) => (
               <Reveal key={h.title} delay={i * 70}>
-                <div className="group transition-colors duration-500 p-8 bg-paper hover:bg-ink">
+                <div className="group h-full transition-colors duration-500 p-8 bg-paper hover:bg-ink">
                   <div className="font-display text-3xl font-bold text-ink/10 group-hover:text-gold transition-colors duration-500 mb-5">{String(i + 1).padStart(2, '0')}</div>
                   <h3 className="font-display font-bold uppercase tracking-wide text-ink group-hover:text-beech transition-colors duration-500 mb-3">{h.title}</h3>
                   <p className="text-sm text-ink/60 group-hover:text-beech/60 transition-colors duration-500 leading-relaxed">{h.desc}</p>

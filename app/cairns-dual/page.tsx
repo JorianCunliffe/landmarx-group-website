@@ -247,8 +247,8 @@ export default function CairnsDual() {
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
             {highlights.map((h, i) => (
-              <Reveal key={h.title} delay={i * 70}>
-                <div className={`group transition-colors duration-500 p-8 ${h.gold ? 'bg-ink col-span-1 sm:col-span-2 lg:col-span-3 flex flex-col sm:flex-row sm:items-center gap-6' : 'bg-paper hover:bg-ink'}`}>
+              <Reveal key={h.title} delay={i * 70} className={h.gold ? 'col-span-1 sm:col-span-2 lg:col-span-3' : ''}>
+                <div className={`group h-full transition-colors duration-500 p-8 ${h.gold ? 'bg-ink flex flex-col sm:flex-row sm:items-center gap-6' : 'bg-paper hover:bg-ink'}`}>
                   {h.gold ? (
                     <>
                       <div className="shrink-0">
