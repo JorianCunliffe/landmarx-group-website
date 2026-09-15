@@ -74,7 +74,7 @@ const projects = [
     active: true,
     sector: 'Co-Living Development',
     name: '262 Lake Street',
-    desc: 'A purpose-built, 14-suite co-living development on a corner site in North Cairns, generating an indicative 8.6% net rental yield. Now selling as a single $4.5M package.',
+    desc: 'A purpose-built, 14-suite co-living development on a corner site in North Cairns. Now selling, with full details available on enquiry.',
     relevance:
       'A structured, income-producing co-living asset in one of Cairns\' emerging investment categories, delivered end-to-end through the Landmarx platform.',
     href: '/262-lake-street',

@@ -10,11 +10,11 @@ import Counter from '@/components/Counter'
 /* ------------------------------------------------------------------ */
 
 const stats = [
-  { value: 8.6, suffix: '%', decimals: 1, label: 'Net Rental Yield (Indicative)' },
   { value: 14, suffix: '', label: 'Private Suites' },
-  { value: 4.5, suffix: 'M', decimals: 1, prefix: '$', label: 'Total Package Price' },
-  { value: 7.7, suffix: 'K', decimals: 1, prefix: '$', label: 'Weekly Rent, Combined' },
-  { value: 392, suffix: 'K/yr', prefix: '$', label: 'Effective Annual Income' },
+  { value: 3, suffix: '', label: 'Storeys' },
+  { value: 4, suffix: '', label: 'Shared Kitchen & Dining Areas' },
+  { value: 2, suffix: '', label: 'Ground Floor Suites' },
+  { value: 1, suffix: '', label: 'Central Lift' },
 ]
 
 const buildingFeatures = [
@@ -28,16 +28,16 @@ const buildingFeatures = [
 
 const investmentHighlights = [
   {
-    title: '8.6% to 8.7% Net Rental Yield',
-    desc: 'An independent rental appraisal of $540 to $550 per room per week across all 14 suites, based on Knight Frank and Savills research into the co-living asset class, delivers an effective gross annual income of $385,258 to $392,392 against the $4.5M total package price.',
+    title: 'Emerging Asset Class',
+    desc: 'Knight Frank and Savills recognise co-living as an emerging, institutional-grade asset class in Australia, backed by strong structural demand across Far North Queensland.',
     gold: true,
   },
   { title: 'Individual Electricity Metering', desc: 'Each suite is individually metered, allowing operating costs to be recovered directly from residents.' },
-  { title: 'Solar Power', desc: 'Rooftop solar power reduces common-area operating costs across the building, supporting long-term returns.' },
+  { title: 'Solar Power', desc: 'Rooftop solar power reduces common-area running costs across the building, benefiting every resident.' },
   { title: 'Secure, Keyed Access', desc: 'A sliding electric gate and key fob entry system control access to the site and building for every resident.' },
   { title: 'Lift-Serviced Building', desc: 'A central lift services all three levels, making every floor equally accessible for residents and guests alike.' },
-  { title: 'Single Asset, Simple Structure', desc: 'Sold as one $4.5M package rather than by individual room, keeping ownership and management straightforward.' },
-  { title: 'Emerging Asset Class', desc: 'Knight Frank and Savills recognise co-living as an emerging, institutional-grade asset class in Australia.' },
+  { title: 'Single Asset, Simple Structure', desc: 'Sold as a single, straightforward asset rather than by individual room, keeping ownership and management simple.' },
+  { title: 'Corner Site Location', desc: 'Positioned on a corner block at Lake Street and McKenzie Street, giving the building frontage and access from two streets.' },
 ]
 
 const suiteInclusions = [
@@ -60,18 +60,6 @@ const sharedSpaces = [
   { title: 'On-Site Parking', desc: 'Ground floor parking is accessed directly from McKenzie Street, right at the corner of the site, near the main entry.' },
   { title: 'Bin & Bike Storage', desc: 'A dedicated, secure storage area for bins and bicycles is provided at ground level for all residents to use.' },
   { title: 'Landscaped, Gated Grounds', desc: 'A sliding electric gate and landscaped grounds frame the corner site, with solar power supporting the building.' },
-]
-
-const financialSummary = [
-  { label: 'Total Package Price', val: '$4,500,000', note: 'Build and land, combined, inc. GST', highlight: true },
-  { label: 'Independent Rental Appraisal', val: '$540 to $550/wk', note: 'Per room, per Knight Frank & Savills research' },
-  { label: 'Weekly Gross Rent (14 Rooms)', val: '$7,560 to $7,700', note: 'Combined, across all suites' },
-  { label: 'Annual Gross Potential Rent', val: '$393,120 to $400,400', note: 'Based on 52 weeks' },
-  { label: 'Vacancy & Collection Allowance', val: '2%', note: 'Approx. 98% managed occupancy' },
-  { label: 'Effective Gross Annual Income', val: '$385,258 to $392,392', note: 'After vacancy allowance', highlight: true },
-  { label: 'Indicative Net Rental Yield', val: '8.6% to 8.7%', note: 'Effective income over total package price', highlight: true },
-  { label: 'Number of Suites', val: '14', note: 'Sold as a single asset' },
-  { label: 'Documentation Status', val: 'In Documentation', note: 'Architectural drawings, issue B' },
 ]
 
 const callTimes = ['Morning (8am–12pm)', 'Afternoon (12pm–5pm)', 'Evening (5pm–7pm)', 'Anytime']
@@ -138,19 +126,13 @@ export default function LakeStreet() {
 
             <div className="fade-up mb-6" style={{ animationDelay: '440ms' }}>
               <div className="inline-flex items-center gap-3 border border-gold/40 bg-gold/10 px-4 py-2.5">
-                <span className="font-display text-2xl font-bold text-gold">8.6%</span>
-                <div>
-                  <div className="font-display text-[9px] font-bold uppercase tracking-[0.3em] text-gold">Net Rental Yield</div>
-                  <div className="font-display text-[9px] uppercase tracking-[0.2em] text-beech/50">Indicative · Now Selling</div>
-                </div>
+                <span className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-gold">Now Selling</span>
               </div>
             </div>
 
             <p className="fade-up text-beech/70 text-lg leading-relaxed max-w-xl mb-10"
               style={{ animationDelay: '520ms' }}>
-              A purpose-built, 14-suite co-living development on a corner site in North Cairns, generating an indicative{' '}
-              <span className="text-gold font-semibold">8.6% to 8.7% net rental yield</span>. Now selling as a single{' '}
-              <span className="text-beech font-semibold">$4.5M package</span>.
+              A purpose-built, 14-suite co-living development on a corner site in North Cairns. Full details, including pricing, are available on enquiry.
             </p>
 
             <div className="fade-up flex flex-col sm:flex-row gap-4" style={{ animationDelay: '680ms' }}>
@@ -158,7 +140,7 @@ export default function LakeStreet() {
                 href="#register-interest"
                 className="btn-sweep btn-sweep-gold font-display font-bold uppercase tracking-widest text-sm px-8 py-4 border border-gold text-gold hover:text-ink transition-colors duration-400"
               >
-                Register Interest →
+                Enquire Now →
               </a>
             </div>
           </div>
@@ -175,7 +157,7 @@ export default function LakeStreet() {
         <div className="marquee py-3.5">
           {[0, 1].map(i => (
             <div key={i} className="marquee-row flex items-center">
-              {['14 PRIVATE SUITES', 'THREE-STOREY BUILDING', '262 LAKE STREET, NORTH CAIRNS', 'POOL & BBQ ENTERTAINING', '8.6% NET YIELD', 'NOW SELLING', 'LANDMARX DEVELOPMENT'].map(t => (
+              {['14 PRIVATE SUITES', 'THREE-STOREY BUILDING', '262 LAKE STREET, NORTH CAIRNS', 'POOL & BBQ ENTERTAINING', 'NOW SELLING', 'ENQUIRE NOW', 'LANDMARX DEVELOPMENT'].map(t => (
                 <span key={t} className="flex items-center gap-6 mr-6">
                   <span className="font-display text-[10px] font-bold tracking-[0.35em] uppercase text-beech-mute whitespace-nowrap">{t}</span>
                   <span className="text-gold text-lg">·</span>
@@ -193,7 +175,7 @@ export default function LakeStreet() {
             {stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 80} className={`px-8 py-10 text-center ${i === 0 ? 'bg-gold/10 border-b border-gold/20 lg:border-b-0 col-span-2 lg:col-span-1' : ''}`}>
                 <div className={`font-display text-4xl sm:text-5xl font-bold mb-1 ${i === 0 ? 'text-gold text-5xl sm:text-6xl' : 'text-gold'}`}>
-                  {s.prefix}<Counter end={s.value} suffix={s.suffix} duration={1600} decimals={(s as { decimals?: number }).decimals ?? 0} />
+                  <Counter end={s.value} suffix={s.suffix} duration={1600} />
                 </div>
                 <div className={`font-display text-[10px] font-bold uppercase tracking-[0.25em] ${i === 0 ? 'text-gold/70' : 'text-beech-mute'}`}>{s.label}</div>
               </Reveal>
@@ -221,7 +203,7 @@ export default function LakeStreet() {
                   262 Lake Street is a three-storey, 14-suite co-living development on a corner site at Lake Street and McKenzie Street, North Cairns. Each suite is a self-contained private space, grouped around shared kitchen, dining and entertaining areas that give residents a genuine sense of community.
                 </p>
                 <p className="text-beech/60 leading-relaxed mb-8">
-                  Co-living is an emerging, institutional-grade asset class, and the rental case here is built on independent appraisal referencing Knight Frank and Savills research, pointing to an indicative 8.6% to 8.7% net rental yield on the $4.5M total package price.
+                  Co-living is an emerging, institutional-grade asset class, and the rental case here is built on an independent appraisal referencing Knight Frank and Savills research. Full financial details are available on enquiry.
                 </p>
                 <div className="flex items-center gap-4">
                   <span className="h-px w-6 bg-gold/50" />
@@ -249,7 +231,7 @@ export default function LakeStreet() {
           <Reveal className="mb-14">
             <div className="flex items-center gap-4 mb-5">
               <span className="h-px w-10 bg-gold-deep" />
-              <p className="font-display text-[10px] font-bold tracking-[0.35em] uppercase text-gold-deep">Investment Highlights</p>
+              <p className="font-display text-[10px] font-bold tracking-[0.35em] uppercase text-gold-deep">Highlights</p>
             </div>
             <h2 className="font-display text-3xl sm:text-4xl font-bold uppercase tracking-tight text-ink">
               Why 262 Lake Street
@@ -258,19 +240,16 @@ export default function LakeStreet() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
             {investmentHighlights.map((h, i) => (
               <Reveal key={h.title} delay={i * 70} className={h.gold ? 'col-span-1 sm:col-span-2 lg:col-span-3' : ''}>
-                <div className={`group h-full transition-colors duration-500 p-8 ${h.gold ? 'bg-ink flex flex-col sm:flex-row sm:items-center gap-6' : 'bg-paper hover:bg-ink'}`}>
+                <div className={`group h-full transition-colors duration-500 p-8 ${h.gold ? 'bg-ink' : 'bg-paper hover:bg-ink'}`}>
                   {h.gold ? (
                     <>
-                      <div className="shrink-0">
-                        <div className="font-display text-5xl sm:text-6xl font-bold text-gold leading-none">8.6%</div>
-                        <div className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-gold/60 mt-1">Net Rental Yield</div>
-                        <div className="font-display text-[9px] uppercase tracking-[0.2em] text-beech/30 mt-0.5">Indicative, to 8.7%</div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-gold">262 Lake Street</span>
+                        <span className="text-gold/40">·</span>
+                        <span className="font-display text-[10px] uppercase tracking-[0.2em] text-beech/40">North Cairns</span>
                       </div>
-                      <div className="w-px h-16 bg-beech/10 hidden sm:block" />
-                      <div>
-                        <h3 className="font-display font-bold uppercase tracking-wide text-beech mb-3 text-lg">{h.title}</h3>
-                        <p className="text-sm text-beech/60 leading-relaxed max-w-2xl">{h.desc}</p>
-                      </div>
+                      <h3 className="font-display font-bold uppercase tracking-wide text-beech mb-3 text-xl sm:text-2xl">{h.title}</h3>
+                      <p className="text-sm text-beech/60 leading-relaxed max-w-2xl">{h.desc}</p>
                     </>
                   ) : (
                     <>
@@ -373,55 +352,20 @@ export default function LakeStreet() {
         </div>
       </section>
 
-      {/* ── FINANCIAL SUMMARY ── */}
-      <section id="financial-summary" className="py-20 lg:py-28 bg-paper bg-grid-paper scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-14 text-center">
-            <div className="flex items-center justify-center gap-4 mb-5">
-              <span className="h-px w-10 bg-gold-deep" />
-              <p className="font-display text-[10px] font-bold tracking-[0.35em] uppercase text-gold-deep">Financial Summary</p>
-              <span className="h-px w-10 bg-gold-deep" />
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold uppercase tracking-tight text-ink">
-              The numbers that matter
-            </h2>
-          </Reveal>
-
-          <div className="max-w-3xl mx-auto">
-            <Reveal>
-              <div className="border border-ink/10 divide-y divide-ink/10">
-                {financialSummary.map(r => (
-                  <div key={r.label} className={`flex items-center justify-between px-6 py-4 ${r.highlight ? 'bg-ink/5' : ''}`}>
-                    <div>
-                      <div className={`font-display text-sm font-bold uppercase tracking-wide ${r.highlight ? 'text-ink' : 'text-ink/70'}`}>{r.label}</div>
-                      {r.note && <div className="text-xs text-ink/40 mt-0.5">{r.note}</div>}
-                    </div>
-                    <div className={`font-display font-bold text-right ${r.highlight ? 'text-lg text-gold-deep' : 'text-ink'}`}>{r.val}</div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal delay={100} className="mt-4 p-4 border border-amber-400/20 bg-amber-50/50 text-xs text-ink/50 leading-relaxed">
-              Financial projections are indicative only, based on an independent rental appraisal referencing Knight Frank and Savills co-living research. Investors should obtain independent financial, legal and taxation advice before making any investment decision.
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ── REGISTER INTEREST ── */}
       <section id="register-interest" className="py-20 lg:py-28 bg-ink bg-grid scroll-mt-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-10">
             <div className="flex items-center gap-4 mb-5">
               <span className="h-px w-10 bg-gold" />
-              <p className="font-display text-[10px] font-bold tracking-[0.35em] uppercase text-gold">Register Interest</p>
+              <p className="font-display text-[10px] font-bold tracking-[0.35em] uppercase text-gold">Enquire Now</p>
             </div>
             <h2 className="font-display text-3xl sm:text-4xl font-bold uppercase tracking-tight text-beech mb-4">
               Own a fully built{' '}
               <em className="accent-serif text-gold lowercase">co-living asset</em>
             </h2>
             <p className="text-beech/60 leading-relaxed">
-              262 Lake Street is now selling as a single $4.5M package. Leave your details and a member of the Landmarx team will walk you through the numbers and send you the full information memorandum.
+              262 Lake Street is now selling. Leave your details and a member of the Landmarx team will walk you through the opportunity and send you the full information memorandum.
             </p>
           </Reveal>
 
@@ -500,7 +444,7 @@ export default function LakeStreet() {
                   disabled={submitting}
                   className="btn-sweep btn-sweep-gold w-full font-display font-bold uppercase tracking-widest text-sm px-8 py-4 border border-gold text-gold hover:text-ink transition-colors duration-400 disabled:opacity-50"
                 >
-                  {submitting ? 'Sending…' : 'Register My Interest →'}
+                  {submitting ? 'Sending…' : 'Enquire Now →'}
                 </button>
                 <p className="text-center text-xs text-beech-mute/60 leading-relaxed">
                   Your information is kept confidential and used only to arrange a call about this project. This page is for information purposes only and does not constitute an offer to invest.
