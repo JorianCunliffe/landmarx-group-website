@@ -534,6 +534,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <label>Your name<input name="name" required autocomplete="name" placeholder="Full name"></label>
         <label>Mobile<input name="mobile" type="tel" required autocomplete="tel" placeholder="04xx xxx xxx"></label>
       </div>
+      <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
       <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@email.com"></label>
       <label>Site address<input name="address" id="addr2" required autocomplete="street-address" placeholder="Street, suburb"></label>
       <div class="two">
@@ -542,7 +543,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       </div>
       <button class="btn" type="submit">Get my free snapshot</button>
       <p class="micro" style="margin:0;text-align:center">We reply personally. No spam, no call centre. Prefer to talk? Call <a href="tel:+61415828522">0415 828 522</a>.</p>
-      <div class="ok" role="status"><span class="mono" style="color:var(--accent)">Request received</span><h3>Got it.</h3><p style="color:var(--text-secondary);margin:0">Your email app has opened with your details. Hit send and your Site Potential Snapshot lands in your inbox within 48 hours.</p></div>
+      <div class="ok" role="status"><span class="mono" style="color:var(--accent)">Request received</span><h3>Got it.</h3><p style="color:var(--text-secondary);margin:0">We've got your details. Your Site Potential Snapshot lands in your inbox within 48 hours.</p></div>
     </form>
   </div>
 </section>
@@ -730,21 +731,28 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   // pause loops on hidden tab
   document.addEventListener('visibilitychange', () => document.body.classList.toggle('paused', document.hidden));
 
-  // ---------- forms (static site: mailto) ----------
+  // ---------- forms (POST to /api/lead, which emails via Resend) ----------
   $$('[data-addr]').forEach(f => f.addEventListener('submit', e => {
     e.preventDefault(); const v = f.querySelector('input').value.trim();
     const a2 = $('#addr2'); if (v) a2.value = v; $('#start').scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth' });
     setTimeout(() => $('#snapForm input[name=name]').focus({ preventScroll: true }), reduced() ? 0 : 900);
   }));
   const form = $('#snapForm');
-  form.addEventListener('submit', e => {
+  const sendBtn = form.querySelector('button[type=submit]');
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const bad = $$('input[required]', form).find(i => !i.value.trim() || (i.type === 'email' && !/^\S+@\S+\.\S+$/.test(i.value)));
     if (bad) { bad.focus(); bad.style.borderColor = 'var(--accent)'; return; }
-    const d = Object.fromEntries(new FormData(form));
-    const body = `Name: ${d.name}\nMobile: ${d.mobile}\nEmail: ${d.email}\nSite address: ${d.address}\nI am a: ${d.who}\nThinking about: ${d.goal}`;
-    location.href = `mailto:${CONTACT}?subject=${encodeURIComponent('Site Potential Snapshot request: ' + d.address)}&body=${encodeURIComponent(body)}`;
-    form.classList.add('sent');
+    const label = sendBtn.textContent; sendBtn.disabled = true; sendBtn.textContent = 'Sending...';
+    form.querySelector('.err')?.remove();
+    try {
+      const r = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+      if (!r.ok) throw new Error(r.status);
+      form.classList.add('sent');
+    } catch {
+      sendBtn.disabled = false; sendBtn.textContent = label;
+      sendBtn.insertAdjacentHTML('afterend', '<p class="err" role="alert" style="margin:0;text-align:center;color:var(--accent)">Sorry, that didn\'t send. Please try again or call <a href="tel:+61415828522">0415 828 522</a>.</p>');
+    }
   });
 
   applyHeroMode(); navState();
